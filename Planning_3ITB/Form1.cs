@@ -8,6 +8,7 @@ namespace Planning_3ITB
         {
             InitializeComponent();
             radioButton1.Checked = true;
+            SetInterval(hScrollBar1.Value);
         }
 
         private void CommandTypeChanged(object sender, EventArgs e)
@@ -28,6 +29,14 @@ namespace Planning_3ITB
         private void AddCommand(Command cmd)
         {
             invoker.AddCommand(cmd);
+            UpdateList(cmd);
+        }
+
+        private void UpdateList(Command cmd)
+        {
+            checkedListBox1.Items.Clear();
+            invoker.ExecuteCommand
+            checkedListBox1.Items.Add(cmd);
         }
 
         // MOVE BY
@@ -79,10 +88,37 @@ namespace Planning_3ITB
         // nastavení barvy
         private void button4_Click(object sender, EventArgs e)
         {
-            if(colorDialog1.ShowDialog() == DialogResult.OK)
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 button4.BackColor = colorDialog1.Color;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            bool commandInvoked = invoker.ExecuteCommand();
+            if(!commandInvoked)
+            {
+                timer1.Enabled = false;
+                button5.Text = "Start";
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = !timer1.Enabled;
+            button5.Text = timer1.Enabled ? "Stop" : "Start";
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            SetInterval(hScrollBar1.Value);
+        }
+
+        private void SetInterval(int interval)
+        {
+            timer1.Interval = interval;
+            label1.Text = $"Interval: {interval}";
         }
     }
 }

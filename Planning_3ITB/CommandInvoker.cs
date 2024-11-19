@@ -8,11 +8,11 @@ namespace Planning_3ITB
 {
     internal class CommandInvoker
     {
-        Queue<Command> queue;
+        CustomQueue<Command> queue;
 
         public CommandInvoker()
         {
-            queue = new Queue<Command>();
+            queue = new CustomQueue<Command>();
         }
 
         public void AddCommand(Command command)
@@ -20,9 +20,16 @@ namespace Planning_3ITB
             queue.Enqueue(command);
         }
 
-        public void ExecuteCommand()
+        public bool ExecuteCommand()
         {
-            queue.Dequeue().Execute();
+            var cmd = queue.Dequeue();
+            if (cmd == null)
+                return false;
+
+            cmd.Execute();
+            return true;
         }
+
+
     }
 }

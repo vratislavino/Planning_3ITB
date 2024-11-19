@@ -226,15 +226,21 @@
             panel2.Size = new Size(80, 76);
             panel2.TabIndex = 0;
             // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            // 
             // hScrollBar1
             // 
             hScrollBar1.Location = new Point(30, 854);
-            hScrollBar1.Maximum = 500;
+            hScrollBar1.Maximum = 1000;
             hScrollBar1.Minimum = 10;
             hScrollBar1.Name = "hScrollBar1";
             hScrollBar1.Size = new Size(283, 26);
             hScrollBar1.TabIndex = 6;
             hScrollBar1.Value = 10;
+            hScrollBar1.Scroll += hScrollBar1_Scroll;
             // 
             // button5
             // 
@@ -244,6 +250,7 @@
             button5.TabIndex = 7;
             button5.Text = "Start";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // label1
             // 

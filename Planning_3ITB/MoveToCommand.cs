@@ -20,5 +20,10 @@ namespace Planning_3ITB
         {
             panel.Location = new Point(x, y);
         }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name} - [{x},{y}]";
+        }
     }
 }

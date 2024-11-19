@@ -19,5 +19,10 @@ namespace Planning_3ITB
         {
             panel.BackColor = color;
         }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name} - [{color.R},{color.G},{color.B}]";
+        }
     }
 }
