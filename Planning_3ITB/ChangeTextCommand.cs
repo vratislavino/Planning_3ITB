@@ -14,5 +14,10 @@
             panel.Controls[0].Text = text;
             return true;
         }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name} - [{text}]";
+        }
     }
 }

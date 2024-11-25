@@ -9,7 +9,7 @@ namespace Planning_3ITB
     internal abstract class Command
     {
         protected Panel panel;
-        public bool enabled = false;
+        public bool enabled = true;
 
         public Command(Panel panel) { 
             this.panel = panel; 

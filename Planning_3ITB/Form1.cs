@@ -44,7 +44,11 @@ namespace Planning_3ITB
                 checkedListBox1.Items.Add(cmd);
             }
 
-            MessageBox.Show(invoker.Queue.Count().ToString());
+            for(int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, invoker.Queue.Get(i).enabled);
+            }
+            //MessageBox.Show(invoker.Queue.Count().ToString());
         }
 
         // MOVE BY
@@ -104,14 +108,28 @@ namespace Planning_3ITB
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            var nextCmd = invoker.Queue.Get(0);
+            if(nextCmd == null)
+            {
+                DeactivateTimer();
+                return;
+            }
+            if (!nextCmd.enabled) // wait for enable
+                return;
+
             bool commandInvoked = invoker.ExecuteCommand();
             if (!commandInvoked)
             {
-                timer1.Enabled = false;
-                button5.Text = "Start";
+                DeactivateTimer();
             }
 
             UpdateList();
+        }
+
+        private void DeactivateTimer()
+        {
+            timer1.Enabled = false;
+            button5.Text = "Start";
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -138,6 +156,10 @@ namespace Planning_3ITB
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (checkedListBox1.SelectedIndex == -1) return;
+
+            var index = checkedListBox1.SelectedIndex;
+            invoker.Get(index).enabled = checkedListBox1.GetItemChecked(index);
             // TODO
         }
     }

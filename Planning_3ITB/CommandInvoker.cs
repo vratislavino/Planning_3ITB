@@ -31,6 +31,9 @@ namespace Planning_3ITB
             return cmd.Execute();
         }
 
-
+        internal Command Get(int index)
+        {
+            return queue.Get(index);
+        }
     }
 }
