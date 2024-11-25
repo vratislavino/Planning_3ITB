@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Planning_3ITB
 {
     public partial class Form1 : Form
@@ -16,7 +18,7 @@ namespace Planning_3ITB
             RadioButton rb = (RadioButton)sender;
             if (!rb.Checked) return;
 
-            groupBox1.Enabled = groupBox2.Enabled = groupBox3.Enabled = false;
+            groupBox1.Enabled = groupBox2.Enabled = groupBox3.Enabled = groupBox4.Enabled = false;
 
             if (rb == radioButton1)
                 groupBox1.Enabled = true;
@@ -24,19 +26,25 @@ namespace Planning_3ITB
                 groupBox2.Enabled = true;
             if (rb == radioButton3)
                 groupBox3.Enabled = true;
+            if (rb == radioButton4)
+                groupBox4.Enabled = true;
         }
 
         private void AddCommand(Command cmd)
         {
             invoker.AddCommand(cmd);
-            UpdateList(cmd);
+            UpdateList();
         }
 
-        private void UpdateList(Command cmd)
+        private void UpdateList()
         {
             checkedListBox1.Items.Clear();
-            invoker.ExecuteCommand
-            checkedListBox1.Items.Add(cmd);
+            foreach (var cmd in invoker.Queue)
+            {
+                checkedListBox1.Items.Add(cmd);
+            }
+
+            MessageBox.Show(invoker.Queue.Count().ToString());
         }
 
         // MOVE BY
@@ -97,11 +105,13 @@ namespace Planning_3ITB
         private void timer1_Tick(object sender, EventArgs e)
         {
             bool commandInvoked = invoker.ExecuteCommand();
-            if(!commandInvoked)
+            if (!commandInvoked)
             {
                 timer1.Enabled = false;
                 button5.Text = "Start";
             }
+
+            UpdateList();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -119,6 +129,16 @@ namespace Planning_3ITB
         {
             timer1.Interval = interval;
             label1.Text = $"Interval: {interval}";
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AddCommand(new ChangeTextCommand(panel2, textBox5.Text));
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO
         }
     }
 }

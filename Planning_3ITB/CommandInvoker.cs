@@ -10,6 +10,8 @@ namespace Planning_3ITB
     {
         CustomQueue<Command> queue;
 
+        public CustomQueue<Command> Queue => queue;
+
         public CommandInvoker()
         {
             queue = new CustomQueue<Command>();
@@ -26,8 +28,7 @@ namespace Planning_3ITB
             if (cmd == null)
                 return false;
 
-            cmd.Execute();
-            return true;
+            return cmd.Execute();
         }
 
 

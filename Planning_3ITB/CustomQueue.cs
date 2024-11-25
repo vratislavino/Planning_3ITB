@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Planning_3ITB
 {
-    internal class CustomQueue<T>
+    internal class CustomQueue<T> : IEnumerable<T>
     {
         List<T> list = new List<T>();
 
@@ -31,6 +32,16 @@ namespace Planning_3ITB
             if(index < 0 || index >= list.Count)
                 return default(T);
             return list[index];
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

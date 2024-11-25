@@ -15,9 +15,10 @@ namespace Planning_3ITB
             this.color = color;
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
             panel.BackColor = color;
+            return true;
         }
 
         public override string ToString()

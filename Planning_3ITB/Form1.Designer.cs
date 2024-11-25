@@ -47,14 +47,21 @@
             checkedListBox1 = new CheckedListBox();
             panel1 = new Panel();
             panel2 = new Panel();
+            label2 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             hScrollBar1 = new HScrollBar();
             button5 = new Button();
             label1 = new Label();
+            radioButton4 = new RadioButton();
+            groupBox4 = new GroupBox();
+            textBox5 = new TextBox();
+            button7 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -208,6 +215,7 @@
             checkedListBox1.Name = "checkedListBox1";
             checkedListBox1.Size = new Size(292, 884);
             checkedListBox1.TabIndex = 4;
+            checkedListBox1.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
             // panel1
             // 
@@ -221,10 +229,24 @@
             // panel2
             // 
             panel2.BackColor = Color.Black;
+            panel2.Controls.Add(label2);
             panel2.Location = new Point(266, 371);
             panel2.Name = "panel2";
             panel2.Size = new Size(80, 76);
             panel2.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoEllipsis = true;
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(80, 76);
+            label2.TabIndex = 0;
+            label2.Text = "A";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -261,11 +283,54 @@
             label1.TabIndex = 8;
             label1.Text = "Interval";
             // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new Point(24, 601);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(17, 16);
+            radioButton4.TabIndex = 10;
+            radioButton4.TabStop = true;
+            radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.CheckedChanged += CommandTypeChanged;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(textBox5);
+            groupBox4.Controls.Add(button7);
+            groupBox4.Location = new Point(47, 601);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(369, 174);
+            groupBox4.TabIndex = 9;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Nastav text";
+            // 
+            // textBox5
+            // 
+            textBox5.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            textBox5.Location = new Point(56, 64);
+            textBox5.Name = "textBox5";
+            textBox5.PlaceholderText = "Y";
+            textBox5.Size = new Size(257, 47);
+            textBox5.TabIndex = 6;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(269, 139);
+            button7.Name = "button7";
+            button7.Size = new Size(94, 29);
+            button7.TabIndex = 4;
+            button7.Text = "Add";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1383, 910);
+            Controls.Add(radioButton4);
+            Controls.Add(groupBox4);
             Controls.Add(label1);
             Controls.Add(button5);
             Controls.Add(hScrollBar1);
@@ -285,6 +350,9 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,5 +381,10 @@
         private HScrollBar hScrollBar1;
         private Button button5;
         private Label label1;
+        private RadioButton radioButton4;
+        private GroupBox groupBox4;
+        private Button button7;
+        private TextBox textBox5;
+        private Label label2;
     }
 }

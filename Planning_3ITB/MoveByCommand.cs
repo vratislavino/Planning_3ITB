@@ -18,12 +18,19 @@ namespace Planning_3ITB
             this.y = y;
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
             panel.Location = new Point(
                 panel.Location.X + x, 
                 panel.Location.Y + y
                 );
+
+            if (panel.Location.X < 0 ||
+                panel.Location.X + panel.Width > panel.Parent.Width ||
+                panel.Location.Y < 0 ||
+                panel.Location.Y + panel.Height > panel.Parent.Height)
+                return false;
+            return true;
         }
 
         public override string ToString()
